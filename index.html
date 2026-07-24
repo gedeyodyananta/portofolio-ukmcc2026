@@ -1,225 +1,1108 @@
 <!DOCTYPE html>
-<html lang="id" class="scroll-smooth">
+<html lang="en" class="scroll-smooth">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nama Kamu | Portfolio</title>
+
+  <!-- ── SEO ── -->
+  <title>Gede Yodyananta | Software Engineering Student &amp; Frontend Developer</title>
+  <meta name="description"
+    content="Portfolio of Gede Yodyananta — Software Engineering Student at Politeknik Negeri Bali. Focused on Frontend Development and Artificial Intelligence." />
+  <meta name="author" content="Gede Yodyananta" />
+  <link rel="canonical" href="https://gedeyodyananta.vercel.app/" />
+
+  <!-- ── Open Graph ── -->
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:title" content="Gede Yodyananta — Software Engineering Student" />
+  <meta property="og:description"
+    content="Frontend Development &amp; Artificial Intelligence. Building modern digital experiences." />
+  <meta property="og:url" content="https://gedeyodyananta.vercel.app/" />
+  <meta property="og:image" content="https://gedeyodyananta.vercel.app/assets/images/portrait.jpg" />
+  <meta property="og:image:width" content="400" />
+  <meta property="og:image:height" content="533" />
+  <meta property="og:image:alt" content="Gede Yodyananta Portfolio" />
+
+  <!-- ── Twitter Card ── -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Gede Yodyananta — Software Engineering Student" />
+  <meta name="twitter:description" content="Frontend Development &amp; Artificial Intelligence." />
+  <meta name="twitter:image" content="https://gedeyodyananta.vercel.app/assets/images/portrait.jpg" />
+  <meta name="twitter:image:alt" content="Gede Yodyananta Portfolio" />
+
+  <!-- ── Favicon ── -->
+  <link rel="icon" type="image/svg+xml" href="./assets/images/favicon.svg" />
+  <meta name="theme-color" content="#080808" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)" />
+
+  <!-- ── Fonts ── -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap"
+    rel="stylesheet" />
+
+  <!-- ── Preload critical above-the-fold image ── -->
+  <link rel="preload" href="./assets/images/portrait.jpg" as="image" fetchpriority="high" />
+
+  <!-- ── Styles ── -->
   <link rel="stylesheet" href="./assets/css/output.css" />
+
+  <!-- ── Structured Data ── -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Gede Yodyananta",
+    "url": "https://gedeyodyananta.vercel.app/",
+    "image": "https://gedeyodyananta.vercel.app/assets/images/portrait.jpg",
+    "jobTitle": "Software Engineering Student",
+    "description": "Software Engineering Student at Politeknik Negeri Bali. Focused on Frontend Development and Artificial Intelligence.",
+    "sameAs": [
+      "https://github.com/gedeyodyananta",
+      "https://linkedin.com/in/Gede-Yodyananta",
+      "https://instagram.com/gd.nanta_"
+    ],
+    "alumniOf": {
+      "@type": "EducationalOrganization",
+      "name": "Politeknik Negeri Bali"
+    },
+    "knowsAbout": [
+      "Frontend Development",
+      "JavaScript",
+      "Tailwind CSS",
+      "PHP",
+      "MySQL",
+      "Artificial Intelligence"
+    ]
+  }
+  </script>
+
+  <!-- ══════════════════════════════════════════════════════
+       CRITICAL: Theme init runs before first paint to
+       prevent flash of wrong theme (FOWT).
+       Reads localStorage → falls back to prefers-color-scheme.
+  ═══════════════════════════════════════════════════════ -->
+  <script>
+    (function () {
+      try {
+        var stored = localStorage.getItem('theme');
+        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var isDark = stored ? stored === 'dark' : prefersDark;
+        if (isDark) document.documentElement.classList.add('dark');
+      } catch (_) { }
+    })();
+  </script>
 </head>
 
-<body class="font-body bg-white text-slate-700 antialiased dark:bg-slate-950 dark:text-slate-300">
+<body class="font-body antialiased">
 
-  <!-- ══ NAVBAR ══ -->
-  <nav class="sticky top-0 z-50 border-b border-slate-100 bg-white/90 backdrop-blur-md
-              dark:border-slate-800/80 dark:bg-slate-950/90">
-    <div class="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
-      <a href="#" class="font-heading text-lg font-bold text-slate-900 dark:text-white">JD.</a>
+  <!-- ── Skip to main content — keyboard / screen reader ── -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
 
-      <div class="hidden items-center gap-8 md:flex">
-        <a href="#about" class="nav-link">About</a>
-        <a href="#projects" class="nav-link">Projects</a>
-        <a href="#contact" class="nav-link">Contact</a>
-      </div>
+  <!-- ══════════════════════════════════════════════════════
+       MOBILE MENU DRAWER
+  ══════════════════════════════════════════════════════ -->
+  <div id="mobile-menu" class="mobile-menu" role="dialog" aria-modal="true" aria-label="Navigation menu">
 
-      <div class="flex items-center gap-2">
-        <button id="theme-toggle" aria-label="Toggle dark mode"
-          class="grid h-9 w-9 place-items-center rounded-lg text-slate-500 transition-colors hover:bg-slate-100 dark:text-slate-400 dark:hover:bg-slate-800">
-          <svg id="icon-sun" class="hidden h-[18px] w-[18px]" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
-          </svg>
-          <svg id="icon-moon" class="hidden h-[18px] w-[18px]" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
-          </svg>
-        </button>
+    <nav aria-label="Mobile navigation">
+      <a href="#hero" class="nav-link block">Home</a>
+      <a href="#about" class="nav-link block">About</a>
+      <a href="#projects" class="nav-link block">Projects</a>
+      <a href="#contact" class="nav-link block">Contact</a>
+      <a href="https://github.com/gedeyodyananta" class="nav-link block" target="_blank" rel="noopener noreferrer">GitHub</a>
+    </nav>
 
-        <a href="mailto:email@kamu.com" class="btn-primary hidden sm:inline-flex">Hire Me</a>
-      </div>
+    <div class="mt-10">
+      <a href="mailto:gedeyodyananta14@gmail.com" class="btn-primary w-full justify-center">
+        Hire Me
+      </a>
     </div>
-  </nav>
+  </div>
 
-  <!-- ══ HERO ══ -->
-  <section class="flex min-h-[calc(100vh-65px)] items-center px-6">
-    <div class="mx-auto max-w-3xl text-center">
-      <p class="mb-5 text-sm font-semibold uppercase tracking-widest text-brand-600 dark:text-brand-400">
-        Full-Stack Developer
-      </p>
-      <h1 class="font-heading font-extrabold leading-[1.08] tracking-tight text-slate-900 dark:text-white"
-          style="font-size: clamp(2.5rem, 6vw + 0.5rem, 4.5rem)">
-        Mengubah ide menjadi <span class="text-brand-600 dark:text-brand-400">pengalaman web</span> yang berkesan
-      </h1>
-      <p class="mx-auto mt-6 max-w-xl leading-relaxed text-slate-500 dark:text-slate-400"
-         style="font-size: clamp(1rem, 1.5vw + 0.25rem, 1.125rem)">
-        Saya Nama Kamu, mahasiswa Teknologi Informasi yang fokus membangun
-        website modern, cepat, dan mudah digunakan siapa saja.
-      </p>
-      <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
-        <a href="#projects" class="btn-primary">Lihat Project Saya</a>
-        <a href="#contact" class="btn-outline">Hubungi Saya</a>
-      </div>
-    </div>
-  </section>
+  <!-- ══════════════════════════════════════════════════════
+       NAVBAR — transparent at top, glass on scroll
+  ══════════════════════════════════════════════════════ -->
+  <header role="banner" style="position:relative;z-index:50;">
+    <nav id="navbar" class="navbar" aria-label="Primary navigation">
+      <div class="container-hero flex items-center justify-between py-[18px]">
 
-  <!-- ══ ABOUT ══ -->
-  <section id="about" class="border-t border-slate-100 bg-slate-50 px-6 py-20 dark:border-slate-800/60 dark:bg-slate-900/40 md:py-28">
-    <div class="mx-auto max-w-5xl">
-      <div class="text-center">
-        <p class="mb-2 text-sm font-semibold uppercase tracking-widest text-brand-600 dark:text-brand-400">About</p>
-        <h2 class="font-heading text-3xl font-bold tracking-tight text-slate-900 dark:text-white md:text-4xl">
-          Sedikit tentang saya
-        </h2>
-      </div>
+        <!-- ── Logo / Wordmark ── -->
+        <a href="#hero" class="font-heading font-bold tracking-tight leading-none"
+          style="font-size:1.0625rem; color:var(--text-90);" aria-label="Gede Yodyananta — back to top">
+          Gede Yodyananta
+        </a>
 
-      <div class="mt-14 grid items-start gap-12 md:grid-cols-5 md:gap-16">
-        <!-- Avatar -->
-        <div class="flex justify-center md:col-span-2">
-          <div class="h-64 w-64 overflow-hidden rounded-2xl bg-gradient-to-br from-brand-100 to-brand-200 dark:from-brand-900/60 dark:to-brand-800/40 lg:h-72 lg:w-72">
-            <div class="flex h-full w-full items-center justify-center text-7xl">👨‍💻</div>
-          </div>
-        </div>
+        <!-- ── Desktop nav ── -->
+        <ul class="hidden items-center gap-7 md:flex list-none" role="list">
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#projects" class="nav-link">Projects</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+          <li>
+            <a href="https://github.com/gedeyodyananta" class="nav-link" target="_blank" rel="noopener noreferrer"
+              aria-label="GitHub profile (opens in new tab)">
+              GitHub
+            </a>
+          </li>
+        </ul>
 
-        <!-- Bio -->
-        <div class="md:col-span-3">
-          <p class="leading-relaxed text-slate-600 dark:text-slate-400">
-            Semester 5 di jurusan Teknologi Informasi, Universitas Teknologi.
-            Saya percaya website yang baik bukan sekadar terlihat bagus, tapi juga
-            cepat diakses, mudah digunakan, dan bisa diandalkan.
-          </p>
-          <p class="mt-4 leading-relaxed text-slate-600 dark:text-slate-400">
-            Saat tidak ngoding, saya biasanya kontribusi ke project open-source,
-            eksplorasi tools baru, atau menulis artikel teknis untuk komunitas developer.
-          </p>
+        <!-- ── Right controls ── -->
+        <div class="flex items-center gap-2">
 
-          <p class="mt-8 mb-3 text-xs font-semibold uppercase tracking-widest text-slate-400 dark:text-slate-500">Tech Stack</p>
-          <div class="flex flex-wrap gap-2">
-            <span class="badge">HTML5</span>
-            <span class="badge">CSS3</span>
-            <span class="badge">JavaScript</span>
-            <span class="badge">Tailwind CSS</span>
-            <span class="badge">React</span>
-            <span class="badge">Node.js</span>
-            <span class="badge">Git</span>
-            <span class="badge">Figma</span>
-          </div>
+          <!-- Theme toggle -->
+          <button id="theme-toggle" aria-label="Toggle dark mode" class="btn-icon">
+            <svg id="icon-sun" class="hidden h-[17px] w-[17px]" fill="none" viewBox="0 0 24 24" stroke-width="1.75"
+              stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+            </svg>
+            <svg id="icon-moon" class="hidden h-[17px] w-[17px]" fill="none" viewBox="0 0 24 24" stroke-width="1.75"
+              stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+            </svg>
+          </button>
+
+          <!-- Hire Me CTA — desktop -->
+          <a href="mailto:gedeyodyananta14@gmail.com" class="btn-primary hidden sm:inline-flex"
+            style="padding: 0.5rem 1rem; font-size:0.8125rem;">
+            Hire Me
+          </a>
+
+          <!-- Hamburger — mobile only -->
+          <button id="menu-btn" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mobile-menu"
+            class="btn-icon md:hidden">
+            <svg id="icon-hamburger" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.75"
+              stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+            </svg>
+            <svg id="icon-close" class="hidden h-5 w-5" fill="none" viewBox="0 0 24 24" stroke-width="1.75"
+              stroke="currentColor" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+
         </div>
       </div>
-    </div>
-  </section>
+    </nav>
+  </header>
 
-  <!-- ══ PROJECTS ══ -->
-  <section id="projects" class="px-6 py-20 md:py-28">
-    <div class="mx-auto max-w-5xl">
-      <div class="text-center">
-        <p class="mb-2 text-sm font-semibold uppercase tracking-widest text-brand-600 dark:text-brand-400">Projects</p>
-        <h2 class="font-heading text-3xl font-bold tracking-tight text-slate-900 dark:text-white md:text-4xl">
-          Yang sudah saya bangun
-        </h2>
-        <p class="mx-auto mt-3 max-w-lg text-slate-500 dark:text-slate-400">
-          Pilihan project yang menunjukkan cara saya menyelesaikan masalah melalui kode.
-        </p>
+  <!-- ══ MAIN CONTENT ══ -->
+  <main id="main-content">
+
+    <!-- ══════════════════════════════════════════════════════
+         HERO — Full viewport, asymmetric two-column
+    ══════════════════════════════════════════════════════ -->
+    <section id="hero" aria-labelledby="hero-heading" style="position:relative; min-height:100vh; display:flex; align-items:center;
+                    overflow:hidden; padding-top:80px;">
+
+      <!-- ── Background: subtle dot grid ── -->
+      <div class="hero-grid-bg" aria-hidden="true"></div>
+
+      <!-- ── Main content container ── -->
+      <div class="container-hero w-full py-16 lg:py-24">
+        <div class="grid grid-cols-1 items-center gap-12
+                    lg:grid-cols-[1fr_420px] lg:gap-16
+                    xl:grid-cols-[1fr_460px] xl:gap-20">
+
+          <!-- ════════════════════════════════
+               LEFT — Text content
+          ════════════════════════════════ -->
+          <div>
+
+            <!-- Name -->
+            <p class="anim-fade" style="font-size:var(--text-xs); font-weight:600; letter-spacing:0.12em;
+                      text-transform:uppercase; color:var(--text-35);
+                      margin-bottom:1.25rem;">
+              Gede Yodyananta · Frontend Developer
+            </p>
+
+            <!-- Main headline -->
+            <h1 id="hero-heading" class="anim-reveal anim-delay-1" style="font-family:var(--font-heading); font-size:var(--text-display);
+                       font-weight:800; line-height:1.05; letter-spacing:-0.03em;
+                       color:var(--text-primary); max-width:22ch;">
+              Building Intelligent
+              <br>
+              <span style="color:var(--text-45);">Digital Experiences.</span>
+            </h1>
+
+            <!-- Supporting text -->
+            <p class="anim-reveal anim-delay-2" style="margin-top:1.75rem; font-size:var(--text-subtitle);
+                      line-height:1.75; color:var(--text-45);
+                      max-width:46ch;">
+              Software Engineering Student at
+              <span style="color:var(--text-70);">Politeknik Negeri Bali</span>
+              — building clean, accessible interfaces and exploring the intersection of
+              frontend craft and artificial intelligence.
+            </p>
+
+            <!-- CTA buttons -->
+            <div class="anim-reveal anim-delay-3" style="margin-top:2.5rem; display:flex; flex-wrap:wrap;
+                        align-items:center; gap:0.875rem;">
+              <a href="#projects" class="btn-primary">
+                Explore Projects
+              </a>
+              <a href="#contact" class="btn-secondary">
+                Contact Me
+              </a>
+            </div>
+
+            <!-- Availability badge -->
+            <div class="anim-fade anim-delay-4" style="margin-top:2rem;">
+              <span class="hero-badge" role="status" aria-label="Open to internship opportunities">
+                <span class="hero-badge-dot" aria-hidden="true"></span>
+                Open to Internship Opportunities
+              </span>
+            </div>
+
+          </div><!-- end left column -->
+
+          <!-- ════════════════════════════════
+               RIGHT — Portrait
+          ════════════════════════════════ -->
+          <div class="anim-scale anim-delay-2" style="position:relative; display:flex; justify-content:center;
+                      align-items:center;">
+
+            <!-- Radial glow behind portrait -->
+            <div class="hero-glow" aria-hidden="true"></div>
+
+            <!-- Glass portrait panel -->
+            <div class="hero-portrait-panel" style="width:100%; max-width:400px; aspect-ratio:3/4; position:relative;">
+
+              <!-- Portrait photo -->
+              <img class="hero-portrait-img" src="./assets/images/portrait.jpg"
+                alt="Gede Yodyananta — Software Engineering Student" width="400" height="533" loading="eager"
+                decoding="async" />
+
+              <!-- Subtle inner vignette at bottom -->
+              <div class="hero-portrait-vignette" aria-hidden="true"></div>
+
+            </div><!-- end portrait panel -->
+
+          </div><!-- end right column -->
+
+        </div><!-- end grid -->
+      </div><!-- end container -->
+
+      <!-- ── Scroll indicator ── -->
+      <div aria-hidden="true" style="position:absolute; bottom:2rem; left:50%; transform:translateX(-50%);
+                  display:flex; flex-direction:column; align-items:center; gap:0.375rem;
+                  opacity:0.28; animation: scroll-hint 2s cubic-bezier(0.4, 0, 0.2, 1) infinite 2s;">
+        <span style="font-size:0.6875rem; font-weight:500; letter-spacing:0.12em;
+                     text-transform:uppercase; color:var(--text-primary); white-space:nowrap;">
+          Scroll
+        </span>
+        <svg width="16" height="20" viewBox="0 0 16 20" fill="none" style="color:var(--text-primary);"
+          aria-hidden="true">
+          <rect x="6.5" y="1" width="3" height="5" rx="1.5" fill="currentColor" opacity="0.6" />
+          <rect x="1" y="1" width="14" height="18" rx="7" stroke="currentColor" stroke-width="1.5" />
+        </svg>
       </div>
 
-      <div class="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+    </section>
 
-        <!-- Project 1 -->
-        <article class="card group">
-          <div class="-m-6 mb-5 overflow-hidden">
-            <div class="flex h-44 items-center justify-center bg-gradient-to-br from-brand-50 to-brand-100 text-5xl transition-transform duration-500 group-hover:scale-105 dark:from-brand-950/60 dark:to-brand-900/40">
-              🛒
+    <!-- ══════════════════════════════════════════════════════
+         ABOUT — S1: WHO I AM
+    ══════════════════════════════════════════════════════ -->
+    <section id="about" aria-labelledby="about-s1-heading" style="position:relative;overflow:hidden;
+                    padding:clamp(5rem,10vw,8rem) 0 clamp(5rem,10vw,7rem);">
+      <div class="about-glow" aria-hidden="true" style="position:absolute;top:-20%;right:-10%;width:500px;height:500px;
+                  background:radial-gradient(circle,rgba(255,255,255,0.025) 0%,transparent 70%);
+                  border-radius:9999px;pointer-events:none;filter:blur(80px);"></div>
+      <div class="container-hero">
+        <div class="grid grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-20">
+          <!-- Left -->
+          <div>
+            <p class="section-eyebrow anim-fade">About Me</p>
+            <h2 id="about-s1-heading" class="anim-reveal anim-delay-1" style="font-family:var(--font-heading);font-size:var(--text-title);
+                       font-weight:700;line-height:1.12;letter-spacing:-0.025em;
+                       color:var(--text-primary);margin-top:0.75rem;">Who I Am</h2>
+            <p class="anim-reveal anim-delay-2" style="margin-top:1.5rem;font-size:var(--text-subtitle);line-height:1.8;
+                      color:var(--text-50);max-width:44ch;">
+              I am <span style="color:var(--text-80);">Gede Yodyananta</span>, a
+              Software Engineering student at Politeknik Negeri Bali with a strong passion
+              for Frontend Development and Artificial Intelligence.</p>
+            <p class="anim-reveal anim-delay-3" style="margin-top:1rem;font-size:var(--text-subtitle);line-height:1.8;
+                      color:var(--text-50);max-width:44ch;">
+              I enjoy transforming ideas into modern digital experiences while continuously
+              learning software engineering principles and intelligent technologies.</p>
+          </div>
+          <!-- Right — info card -->
+          <div class="about-info-card anim-lift anim-delay-2">
+            <div class="about-info-row">
+              <span style="font-size:var(--text-xs);font-weight:600;letter-spacing:0.12em;
+                           text-transform:uppercase;color:var(--text-30);">Name</span>
+              <span style="font-size:var(--text-sm);font-weight:500;
+                           color:var(--text-80);">Gede Yodyananta</span>
+            </div>
+            <div class="about-info-row">
+              <span style="font-size:var(--text-xs);font-weight:600;letter-spacing:0.12em;
+                           text-transform:uppercase;color:var(--text-30);">Nickname</span>
+              <span style="font-size:var(--text-sm);font-weight:500;
+                           color:var(--text-80);">Nanta</span>
+            </div>
+            <div class="about-info-row">
+              <span style="font-size:var(--text-xs);font-weight:600;letter-spacing:0.12em;
+                           text-transform:uppercase;color:var(--text-30);">Role</span>
+              <span style="font-size:var(--text-sm);font-weight:500;
+                           color:var(--text-80);">Software Engineering Student</span>
+            </div>
+            <div class="about-info-row">
+              <span style="font-size:var(--text-xs);font-weight:600;letter-spacing:0.12em;
+                           text-transform:uppercase;color:var(--text-30);">Career Goal</span>
+              <span style="font-size:var(--text-sm);font-weight:500;
+                           color:var(--text-80);">Future AI Engineer</span>
             </div>
           </div>
-          <h3 class="font-heading text-base font-bold text-slate-900 dark:text-white">E-Commerce Dashboard</h3>
-          <p class="mt-2 text-sm leading-relaxed text-slate-500 dark:text-slate-400">
-            Panel admin lengkap untuk kelola produk, lacak pesanan, dan pantau performa penjualan secara real-time.
-          </p>
-          <div class="mt-4 flex flex-wrap gap-1.5">
-            <span class="badge">React</span>
-            <span class="badge">Tailwind</span>
-            <span class="badge">Node.js</span>
-          </div>
-          <a href="#" class="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-brand-600 hover:text-brand-700 dark:text-brand-400">
-            Lihat Detail →
-          </a>
-        </article>
-
-        <!-- Project 2 -->
-        <article class="card group">
-          <div class="-m-6 mb-5 overflow-hidden">
-            <div class="flex h-44 items-center justify-center bg-gradient-to-br from-emerald-50 to-teal-100 text-5xl transition-transform duration-500 group-hover:scale-105 dark:from-emerald-950/60 dark:to-teal-900/40">
-              💬
-            </div>
-          </div>
-          <h3 class="font-heading text-base font-bold text-slate-900 dark:text-white">Chat Application</h3>
-          <p class="mt-2 text-sm leading-relaxed text-slate-500 dark:text-slate-400">
-            Aplikasi pesan instan dengan chat room, indikator mengetik, dan notifikasi push yang berjalan real-time.
-          </p>
-          <div class="mt-4 flex flex-wrap gap-1.5">
-            <span class="badge">Vue.js</span>
-            <span class="badge">Socket.io</span>
-            <span class="badge">MongoDB</span>
-          </div>
-          <a href="#" class="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-brand-600 hover:text-brand-700 dark:text-brand-400">
-            Lihat Detail →
-          </a>
-        </article>
-
-        <!-- Project 3 -->
-        <article class="card group">
-          <div class="-m-6 mb-5 overflow-hidden">
-            <div class="flex h-44 items-center justify-center bg-gradient-to-br from-amber-50 to-orange-100 text-5xl transition-transform duration-500 group-hover:scale-105 dark:from-amber-950/60 dark:to-orange-900/40">
-              🎨
-            </div>
-          </div>
-          <h3 class="font-heading text-base font-bold text-slate-900 dark:text-white">Design System Kit</h3>
-          <p class="mt-2 text-sm leading-relaxed text-slate-500 dark:text-slate-400">
-            Library komponen UI dan design token agar seluruh tim bisa membangun interface yang konsisten dan cepat.
-          </p>
-          <div class="mt-4 flex flex-wrap gap-1.5">
-            <span class="badge">Storybook</span>
-            <span class="badge">Figma</span>
-            <span class="badge">CSS</span>
-          </div>
-          <a href="#" class="mt-5 inline-flex items-center gap-1 text-sm font-semibold text-brand-600 hover:text-brand-700 dark:text-brand-400">
-            Lihat Detail →
-          </a>
-        </article>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ══ CONTACT ══ -->
-  <section id="contact" class="border-t border-slate-100 bg-slate-50 px-6 py-20 dark:border-slate-800/60 dark:bg-slate-900/40 md:py-28">
-    <div class="mx-auto max-w-xl text-center">
-      <p class="mb-2 text-sm font-semibold uppercase tracking-widest text-brand-600 dark:text-brand-400">Contact</p>
-      <h2 class="font-heading text-3xl font-bold tracking-tight text-slate-900 dark:text-white md:text-4xl">
-        Punya ide? Yuk ngobrol.
-      </h2>
-      <p class="mt-4 text-slate-500 dark:text-slate-400">
-        Saya terbuka untuk project freelance, kesempatan magang, atau sekadar diskusi soal teknologi web.
-      </p>
-
-      <div class="mt-10 flex flex-col items-center gap-6">
-        <a href="mailto:email@kamu.com" class="btn-primary">Kirim Email</a>
-        <div class="flex items-center gap-5">
-          <a href="https://linkedin.com/in/username" class="nav-link">LinkedIn</a>
-          <a href="https://github.com/username" class="nav-link">GitHub</a>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+    <!-- ══════════════════════════════════════════════════════
+         ABOUT — S2: MY JOURNEY (Timeline)
+    ══════════════════════════════════════════════════════ -->
+    <section aria-labelledby="about-s2-heading" class="section-alt" style="padding:clamp(5rem,10vw,8rem) 0;">
+      <div class="container-hero">
+        <div class="grid grid-cols-1 gap-16 lg:grid-cols-[1fr_2fr] lg:gap-24">
+          <!-- Left label -->
+          <div style="padding-top:0.5rem;">
+            <p class="section-eyebrow anim-fade">Timeline</p>
+            <h2 id="about-s2-heading" class="anim-reveal anim-delay-1" style="font-family:var(--font-heading);font-size:var(--text-title);
+                       font-weight:700;line-height:1.12;letter-spacing:-0.025em;
+                       color:var(--text-primary);margin-top:0.75rem;">My Journey</h2>
+            <p class="anim-reveal anim-delay-2" style="margin-top:1.25rem;font-size:var(--text-sm);line-height:1.75;
+                      color:var(--text-40);max-width:28ch;">
+              Every step is intentional.<br>Every project is a lesson.</p>
+          </div>
+          <!-- Right — timeline -->
+          <ol class="timeline" aria-label="Learning journey timeline">
+            <li class="timeline-item anim-reveal">
+              <p style="font-size:var(--text-xs);font-weight:600;letter-spacing:0.14em;
+                         text-transform:uppercase;color:var(--text-30);margin-bottom:0.375rem;">2025</p>
+              <h3 style="font-family:var(--font-heading);font-size:1.0625rem;font-weight:600;
+                          color:var(--text-primary);line-height:1.3;">Started Software Engineering</h3>
+              <p style="margin-top:0.5rem;font-size:var(--text-sm);line-height:1.7;
+                         color:var(--text-45);max-width:48ch;">
+                Enrolled at Politeknik Negeri Bali — beginning a focused journey in
+                applied software engineering.</p>
+            </li>
+            <li class="timeline-item anim-reveal anim-delay-1">
+              <p style="font-size:var(--text-xs);font-weight:600;letter-spacing:0.14em;
+                         text-transform:uppercase;color:var(--text-30);margin-bottom:0.375rem;">Foundations</p>
+              <h3 style="font-family:var(--font-heading);font-size:1.0625rem;font-weight:600;
+                          color:var(--text-primary);line-height:1.3;">Web Fundamentals</h3>
+              <p style="margin-top:0.5rem;font-size:var(--text-sm);line-height:1.7;
+                         color:var(--text-45);">Learned the building blocks of the web — writing real code from day one.</p>
+              <div style="margin-top:0.875rem;display:flex;flex-wrap:wrap;gap:0.5rem;">
+                <span class="badge">HTML</span>
+                <span class="badge">CSS</span>
+                <span class="badge">JavaScript</span>
+                <span class="badge">PHP</span>
+              </div>
+            </li>
+            <li class="timeline-item anim-reveal anim-delay-2">
+              <p style="font-size:var(--text-xs);font-weight:600;letter-spacing:0.14em;
+                         text-transform:uppercase;color:var(--text-30);margin-bottom:0.375rem;">Project</p>
+              <h3 style="font-family:var(--font-heading);font-size:1.0625rem;font-weight:600;
+                          color:var(--text-primary);line-height:1.3;">Built — E-Commerce Website</h3>
+              <p style="margin-top:0.5rem;font-size:var(--text-sm);line-height:1.7;
+                         color:var(--text-45);max-width:48ch;">
+                Applied frontend and backend skills to ship a fully functional
+                e-commerce platform end-to-end.</p>
+            </li>
+            <li class="timeline-item anim-reveal anim-delay-3">
+              <p style="font-size:var(--text-xs);font-weight:600;letter-spacing:0.14em;
+                         text-transform:uppercase;color:var(--text-30);margin-bottom:0.375rem;">Project</p>
+              <h3 style="font-family:var(--font-heading);font-size:1.0625rem;font-weight:600;
+                          color:var(--text-primary);line-height:1.3;">Built — Personal Portfolio</h3>
+              <p style="margin-top:0.5rem;font-size:var(--text-sm);line-height:1.7;
+                         color:var(--text-45);max-width:48ch;">
+                Designed and developed this portfolio with a premium design system,
+                animations, and full accessibility.</p>
+            </li>
+            <li class="timeline-item timeline-current anim-reveal anim-delay-4">
+              <div style="display:inline-flex;align-items:center;gap:0.5rem;margin-bottom:0.375rem;">
+                <p style="font-size:var(--text-xs);font-weight:600;letter-spacing:0.14em;
+                           text-transform:uppercase;color:var(--text-30);">Now</p>
+                <span style="display:inline-block;width:5px;height:5px;border-radius:9999px;
+                              background:#4ade80;animation:pulse-dot 2.4s ease-in-out infinite;"
+                  aria-hidden="true"></span>
+              </div>
+              <h3 style="font-family:var(--font-heading);font-size:1.0625rem;font-weight:600;
+                          color:var(--text-primary);line-height:1.3;">Exploring Artificial Intelligence</h3>
+              <p style="margin-top:0.5rem;font-size:var(--text-sm);line-height:1.7;
+                         color:var(--text-45);max-width:48ch;">
+                Diving into AI concepts, machine learning, and intelligent systems
+                alongside frontend engineering.</p>
+            </li>
+            <li class="timeline-item anim-reveal anim-delay-5">
+              <p style="font-size:var(--text-xs);font-weight:600;letter-spacing:0.14em;
+                         text-transform:uppercase;color:var(--text-20);margin-bottom:0.375rem;">Future</p>
+              <h3 style="font-family:var(--font-heading);font-size:1.0625rem;font-weight:600;
+                          color:var(--text-35);line-height:1.3;">Become an AI Engineer</h3>
+              <p style="margin-top:0.5rem;font-size:var(--text-sm);line-height:1.7;
+                         color:var(--text-28);max-width:48ch;">
+                Bridging modern frontend craft with intelligent systems to build
+                meaningful products.</p>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+    <!-- ══════════════════════════════════════════════════════
+         ABOUT — S3: EDUCATION
+    ══════════════════════════════════════════════════════ -->
+    <section aria-labelledby="about-s3-heading" style="padding:clamp(5rem,10vw,8rem) 0;">
+      <div class="container-hero">
+        <div style="max-width:640px;margin-bottom:3rem;">
+          <p class="section-eyebrow anim-fade">Education</p>
+          <h2 id="about-s3-heading" class="anim-reveal anim-delay-1" style="font-family:var(--font-heading);font-size:var(--text-title);
+                     font-weight:700;line-height:1.12;letter-spacing:-0.025em;
+                     color:var(--text-primary);margin-top:0.75rem;">Academic Foundation</h2>
+        </div>
+        <div class="card-glass anim-lift anim-delay-1" style="padding:clamp(2rem,4vw,3rem);">
+          <div class="grid grid-cols-1 gap-8 md:grid-cols-[1fr_auto] md:items-center">
+            <div>
+              <p style="font-size:var(--text-xs);font-weight:600;letter-spacing:0.14em;
+                         text-transform:uppercase;color:var(--text-30);margin-bottom:0.75rem;">Institution</p>
+              <h3 style="font-family:var(--font-heading);font-size:clamp(1.25rem,2.5vw,1.75rem);
+                          font-weight:700;color:var(--text-primary);letter-spacing:-0.02em;line-height:1.2;">
+                Politeknik Negeri Bali</h3>
+              <p style="margin-top:0.5rem;font-size:var(--text-sm);line-height:1.6;
+                         color:var(--text-50);">
+                Bachelor of Applied Science — Software Engineering (TRPL)</p>
+            </div>
+              <div style="display:flex;align-items:center;justify-content:center;gap:2.5rem;">
+              <div style="text-align:center;">
+                <p style="font-size:var(--text-xs);font-weight:600;letter-spacing:0.12em;
+                           text-transform:uppercase;color:var(--text-28);margin-bottom:0.375rem;">Started</p>
+                <p style="font-family:var(--font-heading);font-size:1.5rem;font-weight:700;
+                           color:var(--text-primary);line-height:1;">2025</p>
+              </div>
+              <div style="text-align:center;">
+                <p style="font-size:var(--text-xs);font-weight:600;letter-spacing:0.12em;
+                           text-transform:uppercase;color:var(--text-28);margin-bottom:0.375rem;">Semester</p>
+                <p style="font-family:var(--font-heading);font-size:1.5rem;font-weight:700;
+                           color:var(--text-primary);line-height:1;">2</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ══════════════════════════════════════════════════════
+         ABOUT — S4: CURRENT FOCUS
+    ══════════════════════════════════════════════════════ -->
+    <section aria-labelledby="about-s4-heading" class="section-alt" style="padding:clamp(5rem,10vw,8rem) 0;">
+      <div class="container-hero">
+        <div style="max-width:640px;margin-bottom:3.5rem;">
+          <p class="section-eyebrow anim-fade">Focus</p>
+          <h2 id="about-s4-heading" class="anim-reveal anim-delay-1" style="font-family:var(--font-heading);font-size:var(--text-title);
+                     font-weight:700;line-height:1.12;letter-spacing:-0.025em;
+                     color:var(--text-primary);margin-top:0.75rem;">Current Focus</h2>
+        </div>
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <div class="focus-card anim-lift anim-delay-1">
+            <p style="font-size:var(--text-xs);font-weight:600;letter-spacing:0.14em;
+                       text-transform:uppercase;color:var(--text-30);margin-bottom:0.875rem;">01</p>
+            <h3 style="font-family:var(--font-heading);font-size:1.125rem;font-weight:600;
+                        color:var(--text-primary);line-height:1.3;margin-bottom:0.625rem;">Frontend Development</h3>
+            <p style="font-size:var(--text-sm);line-height:1.7;color:var(--text-45);">
+              Building modern, responsive web interfaces that are fast,
+              accessible, and enjoyable to use.</p>
+          </div>
+          <div class="focus-card anim-lift anim-delay-2">
+            <p style="font-size:var(--text-xs);font-weight:600;letter-spacing:0.14em;
+                       text-transform:uppercase;color:var(--text-30);margin-bottom:0.875rem;">02</p>
+            <h3 style="font-family:var(--font-heading);font-size:1.125rem;font-weight:600;
+                        color:var(--text-primary);line-height:1.3;margin-bottom:0.625rem;">Artificial Intelligence</h3>
+            <p style="font-size:var(--text-sm);line-height:1.7;color:var(--text-45);">
+              Learning AI concepts, machine learning fundamentals,
+              and how to build intelligent systems.</p>
+          </div>
+          <div class="focus-card anim-lift anim-delay-3">
+            <p style="font-size:var(--text-xs);font-weight:600;letter-spacing:0.14em;
+                       text-transform:uppercase;color:var(--text-30);margin-bottom:0.875rem;">03</p>
+            <h3 style="font-family:var(--font-heading);font-size:1.125rem;font-weight:600;
+                        color:var(--text-primary);line-height:1.3;margin-bottom:0.625rem;">Problem Solving</h3>
+            <p style="font-size:var(--text-sm);line-height:1.7;color:var(--text-45);">
+              Transforming complex ideas into practical, clean, and
+              maintainable digital solutions.</p>
+          </div>
+          <div class="focus-card anim-lift anim-delay-4">
+            <p style="font-size:var(--text-xs);font-weight:600;letter-spacing:0.14em;
+                       text-transform:uppercase;color:var(--text-30);margin-bottom:0.875rem;">04</p>
+            <h3 style="font-family:var(--font-heading);font-size:1.125rem;font-weight:600;
+                        color:var(--text-primary);line-height:1.3;margin-bottom:0.625rem;">Continuous Learning</h3>
+            <p style="font-size:var(--text-sm);line-height:1.7;color:var(--text-45);">
+              Always improving through hands-on projects,
+              documentation, and deliberate experimentation.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ══════════════════════════════════════════════════════
+         ABOUT — S5: TECH STACK
+    ══════════════════════════════════════════════════════ -->
+    <section aria-labelledby="about-s5-heading" style="padding:clamp(5rem,10vw,8rem) 0;">
+      <div class="container-hero">
+        <div style="max-width:640px;margin-bottom:3.5rem;">
+          <p class="section-eyebrow anim-fade">Skills</p>
+          <h2 id="about-s5-heading" class="anim-reveal anim-delay-1" style="font-family:var(--font-heading);font-size:var(--text-title);
+                     font-weight:700;line-height:1.12;letter-spacing:-0.025em;
+                     color:var(--text-primary);margin-top:0.75rem;">Tech Stack</h2>
+        </div>
+        <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4" style="align-items:stretch;">
+          <div class="stack-card anim-lift anim-delay-1">
+            <p class="stack-category">Frontend</p>
+            <div style="display:flex;flex-wrap:wrap;gap:0.5rem;">
+              <span class="badge">HTML</span>
+              <span class="badge">CSS</span>
+              <span class="badge">JavaScript</span>
+              <span class="badge">Tailwind CSS</span>
+            </div>
+          </div>
+          <div class="stack-card anim-lift anim-delay-2" style="display:flex;flex-direction:row;gap:1.5rem;flex-wrap:wrap;">
+            <div>
+              <p class="stack-category">Backend</p>
+              <div style="display:flex;flex-wrap:wrap;gap:0.5rem;">
+                <span class="badge">PHP</span>
+              </div>
+            </div>
+            <div style="width:1px;background:var(--border-07);flex-shrink:0;align-self:stretch;"></div>
+            <div>
+              <p class="stack-category">Database</p>
+              <div style="display:flex;flex-wrap:wrap;gap:0.5rem;">
+                <span class="badge">MySQL</span>
+              </div>
+            </div>
+          </div>
+          <div class="stack-card anim-lift anim-delay-3">
+            <p class="stack-category">Tools</p>
+            <div style="display:flex;flex-wrap:wrap;gap:0.5rem;">
+              <span class="badge">Git</span>
+              <span class="badge">GitHub</span>
+              <span class="badge">VS Code</span>
+              <span class="badge">Figma</span>
+            </div>
+          </div>
+          <div class="stack-card anim-lift anim-delay-4">
+            <p class="stack-category">Exploring</p>
+            <div style="display:flex;flex-wrap:wrap;gap:0.5rem;">
+              <span class="badge-future">Python</span>
+              <span class="badge-future">Machine Learning</span>
+              <span class="badge-future">Artificial Intelligence</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ══════════════════════════════════════════════════════
+         ABOUT — S6: MY VISION
+    ══════════════════════════════════════════════════════ -->
+    <section aria-labelledby="about-s6-heading" class="section-alt" style="padding:clamp(5rem,10vw,8rem) 0;">
+      <div class="container-hero">
+        <div class="vision-panel anim-scale">
+          <p class="section-eyebrow" style="text-align:center;margin-bottom:2rem;">My Vision</p>
+          <h2 id="about-s6-heading" style="font-family:var(--font-heading);
+                     font-size:clamp(1.5rem,3.5vw + 0.5rem,2.75rem);
+                     font-weight:700;line-height:1.25;letter-spacing:-0.025em;
+                     color:var(--text-primary);text-align:center;max-width:28ch;margin:0 auto;">
+            I aspire to become an AI Engineer who creates intelligent solutions that
+            <span style="color:var(--text-40);">solve real-world problems</span>
+            while delivering exceptional user experiences through modern software engineering.
+          </h2>
+        </div>
+      </div>
+    </section>
+    <!-- ══════════════════════════════════════════════════════
+         ABOUT — S7: PERSONAL VALUES
+    ══════════════════════════════════════════════════════ -->
+    <section aria-labelledby="about-s7-heading" style="padding:clamp(5rem,10vw,8rem) 0 clamp(6rem,12vw,10rem);">
+      <div class="container-hero">
+        <div style="max-width:640px;margin-bottom:3.5rem;">
+          <p class="section-eyebrow anim-fade">Values</p>
+          <h2 id="about-s7-heading" class="anim-reveal anim-delay-1" style="font-family:var(--font-heading);font-size:var(--text-title);
+                     font-weight:700;line-height:1.12;letter-spacing:-0.025em;
+                     color:var(--text-primary);margin-top:0.75rem;">Personal Values</h2>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-3" style="border:1px solid var(--border-07);
+                    border-radius:var(--radius-xl);overflow:hidden;">
+          <div class="value-card anim-reveal anim-delay-1" style="border-radius:0;border:none;
+                      border-bottom:1px solid var(--border-07);" data-border-right>
+            <h3 style="font-family:var(--font-heading);font-size:1.0625rem;font-weight:600;
+                        color:var(--text-primary);line-height:1.3;margin-bottom:0.625rem;">Continuous Growth</h3>
+            <p style="font-size:var(--text-sm);line-height:1.7;color:var(--text-40);">
+              Always improving through consistent learning, reflection,
+              and deliberate practice.</p>
+          </div>
+          <div class="value-card anim-reveal anim-delay-2" style="border-radius:0;border:none;
+                      border-left:1px solid var(--border-07);
+                      border-right:1px solid var(--border-07);
+                      border-bottom:1px solid var(--border-07);">
+            <h3 style="font-family:var(--font-heading);font-size:1.0625rem;font-weight:600;
+                        color:var(--text-primary);line-height:1.3;margin-bottom:0.625rem;">Quality First</h3>
+            <p style="font-size:var(--text-sm);line-height:1.7;color:var(--text-40);">
+              Building clean, maintainable, and user-focused software
+              that stands the test of time.</p>
+          </div>
+          <div class="value-card anim-reveal anim-delay-3" style="border-radius:0;border:none;
+                      border-bottom:1px solid var(--border-07);">
+            <h3 style="font-family:var(--font-heading);font-size:1.0625rem;font-weight:600;
+                        color:var(--text-primary);line-height:1.3;margin-bottom:0.625rem;">Curiosity</h3>
+            <p style="font-size:var(--text-sm);line-height:1.7;color:var(--text-40);">
+              Exploring new technologies and turning ideas into
+              reality through experimentation.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <!-- ══ FOOTER ══ -->
-  <footer class="border-t border-slate-100 px-6 py-6 dark:border-slate-800">
-    <div class="mx-auto flex max-w-5xl flex-col items-center gap-1 text-xs text-slate-400 dark:text-slate-500
-                md:flex-row md:justify-between">
-      <p>&copy; 2026 Nama Kamu</p>
-      <p>Dibangun dengan Tailwind CSS</p>
+    <!-- ══════════════════════════════════════════════════════
+         PROJECTS
+    ══════════════════════════════════════════════════════ -->
+    <section id="projects" aria-labelledby="projects-heading" class="section-alt"
+      style="padding:clamp(5rem,10vw,8rem) 0 clamp(6rem,12vw,9rem);">
+      <div class="container-hero">
+
+        <!-- Section header -->
+        <div style="max-width:640px; margin-bottom:clamp(3rem,5vw,4.5rem);">
+          <p class="section-eyebrow anim-fade">Projects</p>
+          <h2 id="projects-heading" class="anim-reveal anim-delay-1" style="font-family:var(--font-heading);font-size:var(--text-title);
+                     font-weight:700;line-height:1.12;letter-spacing:-0.025em;
+                     color:var(--text-primary);margin-top:0.75rem;">
+            What I've Built
+          </h2>
+          <p class="anim-reveal anim-delay-2" style="margin-top:1rem;font-size:var(--text-subtitle);line-height:1.75;
+                    color:var(--text-45);max-width:48ch;">
+            Selected projects that show how I approach problems,
+            learn new technologies, and ship real products.
+          </p>
+        </div>
+
+        <!-- ── FEATURED PROJECT ── -->
+        <article class="proj-featured anim-scale anim-delay-1" aria-labelledby="proj-featured-title">
+
+          <!-- Thumbnail -->
+          <div class="proj-featured-thumb">
+            <img src="./assets/images/ecommerce-home.png"
+                 alt="E-Commerce Website — FuFuFa gadget store homepage"
+                 loading="lazy"
+                 decoding="async"
+                 width="1200"
+                 height="525" />
+          </div>
+
+          <!-- Content -->
+          <div style="padding:clamp(1.75rem,3vw,2.5rem) clamp(1.75rem,3vw,2.5rem);">
+
+            <!-- Meta badges row -->
+            <div style="display:flex;flex-wrap:wrap;align-items:center;gap:0.5rem;
+                         margin-bottom:1rem;">
+              <span class="badge-completed">Completed</span>
+              <span class="badge-role">Frontend Developer</span>
+            </div>
+
+            <!-- Title + description -->
+            <div class="grid grid-cols-1 gap-8 lg:grid-cols-[1fr_auto] lg:items-end">
+              <div>
+                <h3 id="proj-featured-title" style="font-family:var(--font-heading);
+                           font-size:clamp(1.375rem,2.5vw,1.875rem);
+                           font-weight:700;color:var(--text-primary);line-height:1.2;
+                           letter-spacing:-0.02em;">
+                  E-Commerce Website
+                </h3>
+                <p style="margin-top:0.75rem;font-size:var(--text-sm);line-height:1.75;
+                           color:var(--text-50);max-width:60ch;">
+                  A responsive e-commerce frontend built as a university web programming
+                  project, focusing on clean UI, product browsing, and user experience.
+                  Built with PHP, JavaScript, CSS and MySQL.
+                </p>
+                <!-- Tech badges -->
+                <div style="margin-top:1.25rem;display:flex;flex-wrap:wrap;gap:0.5rem;">
+                  <span class="badge">PHP</span>
+                  <span class="badge">JavaScript</span>
+                  <span class="badge">CSS</span>
+                  <span class="badge">MySQL</span>
+                </div>
+              </div>
+
+              <!-- CTA -->
+              <div style="flex-shrink:0;padding-bottom:0.125rem;">
+                <a href="./projects/ecommerce-website/index.html" class="btn-primary"
+                  aria-label="View case study for E-Commerce Website">
+                  View Case Study
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </article>
+
+        <!-- ── OTHER PROJECTS GRID ── -->
+        <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3" style="margin-top:1.5rem;">
+
+          <!-- Project 2 — Portfolio Website -->
+          <article class="proj-card anim-lift anim-delay-2" aria-labelledby="proj2-title">
+            <div class="proj-card-thumb">
+              <img src="./assets/images/portfolio-preview.png"
+                   alt="Personal Portfolio — Hero section preview"
+                   loading="lazy"
+                   decoding="async" />
+            </div>
+            <div style="padding:var(--space-6);display:flex;flex-direction:column;
+                         flex:1;gap:0;">
+              <div style="display:flex;flex-wrap:wrap;align-items:center;gap:0.4rem;
+                           margin-bottom:0.875rem;">
+                <span class="badge-completed">Completed</span>
+                <span class="badge-role">Designer + Developer</span>
+              </div>
+              <h3 id="proj2-title" style="font-family:var(--font-heading);font-size:1rem;font-weight:600;
+                          color:var(--text-primary);line-height:1.3;">Personal Portfolio</h3>
+              <p style="margin-top:0.5rem;font-size:var(--text-sm);line-height:1.7;
+                         color:var(--text-45);flex:1;">
+                This portfolio site — built with a premium design system, Tailwind CSS v4,
+                and smooth scroll animations.
+              </p>
+              <div style="margin-top:1rem;display:flex;flex-wrap:wrap;gap:0.4rem;">
+                <span class="badge">HTML</span>
+                <span class="badge">Tailwind CSS</span>
+                <span class="badge">JavaScript</span>
+              </div>
+              <a href="https://gedeyodyananta.vercel.app/" target="_blank" rel="noopener noreferrer"
+                 aria-label="View Personal Portfolio live site" class="btn-ghost" style="margin-top:1.25rem;align-self:flex-start;padding-left:0;
+                        color:var(--text-40);font-size:var(--text-sm);">
+                View Live Site →
+              </a>
+            </div>
+          </article>
+
+          <!-- Project 3 — placeholder slot -->
+          <article class="proj-card anim-lift anim-delay-3" aria-labelledby="proj3-title">
+            <div class="proj-card-thumb" style="position:relative;overflow:hidden;">
+              <!-- Screenshot image with blur effect -->
+              <img src="./assets/images/next-project-preview.png"
+                   alt="Next Project — AI-powered application preview"
+                   loading="lazy"
+                   decoding="async"
+                   style="width:100%;height:100%;object-fit:cover;object-position:center;
+                          display:block;filter:blur(3px);transform:scale(1.06);
+                          transition:filter 0.4s var(--ease-out), transform var(--duration-slow) var(--ease-out);" />
+              <!-- Dark overlay to keep the "coming soon" mystery -->
+              <div aria-hidden="true"
+                   style="position:absolute;inset:0;
+                          background:rgba(0,0,0,0.35);
+                          pointer-events:none;"></div>
+            </div>
+            <div style="padding:var(--space-6);display:flex;flex-direction:column;
+                         flex:1;gap:0;">
+              <div style="display:flex;flex-wrap:wrap;align-items:center;gap:0.4rem;
+                           margin-bottom:0.875rem;">
+                <span class="badge-in-progress">In Progress</span>
+                <span class="badge-role">Developer</span>
+              </div>
+              <h3 id="proj3-title" style="font-family:var(--font-heading);font-size:1rem;font-weight:600;
+                          color:var(--text-primary);line-height:1.3;">Next Project</h3>
+              <p style="margin-top:0.5rem;font-size:var(--text-sm);line-height:1.7;
+                         color:var(--text-45);flex:1;">
+                Currently exploring AI-powered applications. Details coming soon as the
+                learning journey progresses.
+              </p>
+              <div style="margin-top:1rem;display:flex;flex-wrap:wrap;gap:0.4rem;">
+                <span class="badge-future">Python</span>
+                <span class="badge-future">AI / ML</span>
+              </div>
+              <span style="margin-top:1.25rem;font-size:var(--text-sm);font-weight:500;
+                            color:var(--text-22);align-self:flex-start;">
+                Coming soon
+              </span>
+            </div>
+          </article>
+
+          <!-- More projects card — open invitation -->
+          <div class="proj-card anim-lift anim-delay-4" style="justify-content:center;align-items:center;
+                      min-height:280px;text-align:center;padding:var(--space-8);"
+            aria-label="More projects coming soon">
+            <div>
+              <p style="font-size:var(--text-xs);font-weight:600;letter-spacing:0.14em;
+                         text-transform:uppercase;color:var(--text-20);
+                         margin-bottom:1rem;">More projects</p>
+              <p style="font-size:var(--text-sm);line-height:1.7;
+                         color:var(--text-30);max-width:24ch;margin:0 auto;">
+                New projects added as I learn and build.
+              </p>
+              <a href="https://github.com/gedeyodyananta" class="btn-ghost" target="_blank" rel="noopener noreferrer" style="margin-top:1.5rem;color:var(--text-35);
+                        font-size:var(--text-sm);">
+                See GitHub →
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════════════════
+         CONTACT
+    ══════════════════════════════════════════════════════ -->
+    <section id="contact" aria-labelledby="contact-heading" style="position:relative;overflow:hidden;
+                    padding:clamp(6rem,12vw,10rem) 0 clamp(7rem,14vw,11rem);">
+
+      <!-- Ambient glow -->
+      <div aria-hidden="true" style="position:absolute;bottom:-20%;left:50%;transform:translateX(-50%);
+                  width:600px;height:400px;border-radius:9999px;pointer-events:none;
+                  background:radial-gradient(ellipse,rgba(255,255,255,0.028) 0%,transparent 70%);
+                  filter:blur(40px);"></div>
+
+      <div class="container-hero" style="position:relative;">
+        <div class="grid grid-cols-1 gap-16 lg:grid-cols-[1fr_1fr] lg:gap-20 items-start">
+
+          <!-- Left — heading + social links -->
+          <div>
+            <p class="section-eyebrow anim-fade">Contact</p>
+            <h2 id="contact-heading" class="anim-reveal anim-delay-1" style="font-family:var(--font-heading);font-size:var(--text-title);
+                       font-weight:700;line-height:1.1;letter-spacing:-0.025em;
+                       color:var(--text-primary);margin-top:0.75rem;max-width:18ch;">
+              Let's Build Something Together.
+            </h2>
+            <p class="anim-reveal anim-delay-2" style="margin-top:1.5rem;font-size:var(--text-subtitle);line-height:1.8;
+                      color:var(--text-45);max-width:38ch;">
+              Open to internship opportunities, freelance projects,
+              or a conversation about frontend and AI.
+            </p>
+
+            <!-- Availability badge -->
+            <div class="anim-reveal anim-delay-3" style="margin-top:2rem;">
+              <span class="hero-badge" role="status" aria-label="Available for opportunities">
+                <span class="hero-badge-dot" aria-hidden="true"></span>
+                Available for opportunities
+              </span>
+            </div>
+
+            <!-- Social links -->
+            <div class="anim-reveal anim-delay-4"
+              style="margin-top:2rem;display:flex;flex-direction:column;gap:0.625rem;">
+
+              <!-- Email -->
+              <a href="mailto:gedeyodyananta14@gmail.com" class="contact-social-link"
+                aria-label="Send email to Gede Yodyananta">
+                <div style="display:flex;align-items:center;gap:0.75rem;">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                    style="color:var(--text-55);flex-shrink:0;" aria-hidden="true" stroke="currentColor"
+                    stroke-width="1.75">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+                  </svg>
+                  <div>
+                    <p style="font-size:var(--text-sm);font-weight:500;color:var(--text-75);line-height:1.2;">Email</p>
+                    <p style="font-size:var(--text-xs);color:var(--text-30);">gedeyodyananta14@gmail.com</p>
+                  </div>
+                </div>
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="color:var(--text-22);flex-shrink:0;"
+                  aria-hidden="true">
+                  <path d="M2.5 11.5L11.5 2.5M11.5 2.5H5.5M11.5 2.5V8.5" stroke="currentColor" stroke-width="1.5"
+                    stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </a>
+
+              <!-- GitHub -->
+              <a href="https://github.com/gedeyodyananta" class="contact-social-link" target="_blank"
+                rel="noopener noreferrer me" aria-label="GitHub profile (opens in new tab)">
+                <div style="display:flex;align-items:center;gap:0.75rem;">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"
+                    style="color:var(--text-55);flex-shrink:0;" aria-hidden="true">
+                    <path
+                      d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+                  </svg>
+                  <div>
+                    <p style="font-size:var(--text-sm);font-weight:500;color:var(--text-75);line-height:1.2;">GitHub</p>
+                    <p style="font-size:var(--text-xs);color:var(--text-30);">github.com/gedeyodyananta</p>
+                  </div>
+                </div>
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="color:var(--text-22);flex-shrink:0;"
+                  aria-hidden="true">
+                  <path d="M2.5 11.5L11.5 2.5M11.5 2.5H5.5M11.5 2.5V8.5" stroke="currentColor" stroke-width="1.5"
+                    stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </a>
+
+              <!-- LinkedIn -->
+              <a href="https://linkedin.com/in/Gede-Yodyananta" class="contact-social-link" target="_blank"
+                rel="noopener noreferrer me" aria-label="LinkedIn profile (opens in new tab)">
+                <div style="display:flex;align-items:center;gap:0.75rem;">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"
+                    style="color:var(--text-55);flex-shrink:0;" aria-hidden="true">
+                    <path
+                      d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                  </svg>
+                  <div>
+                    <p style="font-size:var(--text-sm);font-weight:500;color:var(--text-75);line-height:1.2;">LinkedIn
+                    </p>
+                    <p style="font-size:var(--text-xs);color:var(--text-30);">linkedin.com/in/Gede-Yodyananta</p>
+                  </div>
+                </div>
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="color:var(--text-22);flex-shrink:0;"
+                  aria-hidden="true">
+                  <path d="M2.5 11.5L11.5 2.5M11.5 2.5H5.5M11.5 2.5V8.5" stroke="currentColor" stroke-width="1.5"
+                    stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </a>
+
+              <!-- Instagram -->
+              <a href="https://instagram.com/gd.nanta_" class="contact-social-link" target="_blank"
+                rel="noopener noreferrer" aria-label="Instagram profile (opens in new tab)">
+                <div style="display:flex;align-items:center;gap:0.75rem;">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                    style="color:var(--text-55);flex-shrink:0;" aria-hidden="true" stroke="currentColor"
+                    stroke-width="1.75">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                    <circle cx="12" cy="12" r="4" stroke-linecap="round" stroke-linejoin="round" />
+                    <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none" />
+                  </svg>
+                  <div>
+                    <p style="font-size:var(--text-sm);font-weight:500;color:var(--text-75);line-height:1.2;">Instagram
+                    </p>
+                    <p style="font-size:var(--text-xs);color:var(--text-30);">instagram.com/gd.nanta_</p>
+                  </div>
+                </div>
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="color:var(--text-22);flex-shrink:0;"
+                  aria-hidden="true">
+                  <path d="M2.5 11.5L11.5 2.5M11.5 2.5H5.5M11.5 2.5V8.5" stroke="currentColor" stroke-width="1.5"
+                    stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </a>
+
+            </div>
+          </div>
+
+          <!-- Right — contact form -->
+          <div class="anim-lift anim-delay-2">
+            <div style="border-radius:var(--radius-2xl);border:1px solid var(--border-08);
+                         background:var(--surface-3);
+                         backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+                         padding:clamp(1.75rem,3vw,2.5rem);">
+
+              <p style="font-family:var(--font-heading);font-size:1rem;font-weight:600;
+                         color:var(--text-85);margin-bottom:1.5rem;">Send a Message</p>
+
+              <form class="contact-form" action="https://formspree.io/gedeyodyananta14@gmail.com" method="POST" novalidate
+                aria-label="Contact form">
+
+                <!-- Name -->
+                <div class="form-field">
+                  <label for="contact-name" class="form-label">Name</label>
+                  <input type="text" id="contact-name" name="name" class="form-input" placeholder="Your full name"
+                    autocomplete="name" required aria-required="true" />
+                </div>
+
+                <!-- Email -->
+                <div class="form-field">
+                  <label for="contact-email" class="form-label">Email</label>
+                  <input type="email" id="contact-email" name="email" class="form-input" placeholder="your@email.com"
+                    autocomplete="email" required aria-required="true" />
+                </div>
+
+                <!-- Message -->
+                <div class="form-field">
+                  <label for="contact-message" class="form-label">Message</label>
+                  <textarea id="contact-message" name="message" class="form-textarea"
+                    placeholder="Tell me about your project or idea..." rows="5" required
+                    aria-required="true"></textarea>
+                </div>
+
+                <!-- Submit -->
+                <button type="submit" class="btn-primary form-submit" style="width:100%;justify-content:center;
+                               padding-block:0.875rem;margin-top:0.25rem;">
+                  Send Message
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true" stroke="currentColor"
+                    stroke-width="1.5">
+                    <path d="M2 7h10M8 3l4 4-4 4" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </button>
+
+              </form>
+
+              <p style="margin-top:1.25rem;font-size:var(--text-xs);
+                         color:var(--text-22);text-align:center;line-height:1.6;">
+                Or email directly · Typically responds within 24 hours
+              </p>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ══════════════════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════════════════ -->
+  <footer role="contentinfo" style="border-top:1px solid var(--border-07);
+                 background-color:var(--section-alt-bg);">
+    <div class="container-hero py-8">
+      <div style="display:flex;flex-wrap:wrap;align-items:center;
+                   justify-content:space-between;gap:1.25rem;">
+
+        <!-- Left — brand + built-with -->
+        <div>
+          <a href="#hero" class="font-heading font-bold" style="font-size:1rem;color:var(--text-65);
+                    letter-spacing:-0.01em;text-decoration:none;">
+            Gede Yodyananta
+          </a>
+          <p style="margin-top:0.375rem;font-size:var(--text-xs);
+                     color:var(--text-22);line-height:1.5;">
+            Built with HTML, Tailwind CSS &amp; JavaScript
+          </p>
+        </div>
+
+        <!-- Center — nav links -->
+        <nav aria-label="Footer navigation" style="display:flex;flex-wrap:wrap;gap:1.5rem;">
+          <a href="#about" class="nav-link" style="font-size:var(--text-xs);">About</a>
+          <a href="#projects" class="nav-link" style="font-size:var(--text-xs);">Projects</a>
+          <a href="#contact" class="nav-link" style="font-size:var(--text-xs);">Contact</a>
+        </nav>
+
+        <!-- Right — social icons + copyright -->
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:0.625rem;">
+          <div style="display:flex;align-items:center;gap:0.875rem;">
+            <a href="https://github.com/gedeyodyananta" class="btn-icon" target="_blank" rel="noopener noreferrer"
+              aria-label="GitHub (opens in new tab)" style="width:2rem;height:2rem;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path
+                  d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+              </svg>
+            </a>
+            <a href="https://linkedin.com/in/Gede-Yodyananta" class="btn-icon" target="_blank" rel="noopener noreferrer"
+              aria-label="LinkedIn (opens in new tab)" style="width:2rem;height:2rem;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path
+                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+              </svg>
+            </a>
+            <a href="https://instagram.com/gd.nanta_" class="btn-icon" target="_blank" rel="noopener noreferrer"
+              aria-label="Instagram (opens in new tab)" style="width:2rem;height:2rem;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"
+                aria-hidden="true">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke-linecap="round" stroke-linejoin="round" />
+                <circle cx="12" cy="12" r="4" stroke-linecap="round" stroke-linejoin="round" />
+                <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none" />
+              </svg>
+            </a>
+          </div>
+          <p style="font-size:var(--text-xs);color:var(--text-20);">
+            &copy; <span id="footer-year">2026</span> Gede Yodyananta
+          </p>
+        </div>
+
+      </div>
     </div>
   </footer>
 
-  <script src="./assets/js/main.js"></script>
+  <script src="./assets/js/main.js" defer></script>
+
 </body>
+
 </html>
