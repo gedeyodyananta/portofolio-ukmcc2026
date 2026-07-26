@@ -849,6 +849,11 @@
     50%       { opacity: 0.12; transform: translateX(-50%) translateY(5px); }
   }
 
+  @keyframes scroll-hint-inline {
+    0%, 100% { opacity: 0.28; transform: translateY(0);   }
+    50%       { opacity: 0.12; transform: translateY(5px); }
+  }
+
   /* ── Icon button ── */
   .btn-icon {
     @apply inline-flex items-center justify-center;
@@ -1337,6 +1342,9 @@
     /* Freeze the scroll-hint indicator */
     @keyframes scroll-hint {
       0%, 100% { opacity: 0.28; transform: translateX(-50%) translateY(0); }
+    }
+    @keyframes scroll-hint-inline {
+      0%, 100% { opacity: 0.28; transform: translateY(0); }
     }
 
     /* Disable hover transforms on all interactive cards */
