@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- ── SEO ── -->
-  <title>Gede Yodyananta | Software Engineering Student &amp; Frontend Developer</title>
+  <title>Nanta</title>
   <meta name="description"
     content="Portfolio of Gede Yodyananta — Software Engineering Student at Politeknik Negeri Bali. Focused on Frontend Development and Artificial Intelligence." />
   <meta name="author" content="Gede Yodyananta" />
@@ -19,17 +19,13 @@
   <meta property="og:description"
     content="Frontend Development &amp; Artificial Intelligence. Building modern digital experiences." />
   <meta property="og:url" content="https://gedeyodyananta.vercel.app/" />
-  <meta property="og:image" content="https://gedeyodyananta.vercel.app/assets/images/portrait.jpg" />
-  <meta property="og:image:width" content="400" />
-  <meta property="og:image:height" content="533" />
+  <meta property="og:image" content="https://gedeyodyananta.vercel.app/assets/images/og-image.svg" />
   <meta property="og:image:alt" content="Gede Yodyananta Portfolio" />
 
   <!-- ── Twitter Card ── -->
-  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Gede Yodyananta — Software Engineering Student" />
   <meta name="twitter:description" content="Frontend Development &amp; Artificial Intelligence." />
-  <meta name="twitter:image" content="https://gedeyodyananta.vercel.app/assets/images/portrait.jpg" />
-  <meta name="twitter:image:alt" content="Gede Yodyananta Portfolio" />
 
   <!-- ── Favicon ── -->
   <link rel="icon" type="image/svg+xml" href="./assets/images/favicon.svg" />
@@ -43,8 +39,7 @@
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap"
     rel="stylesheet" />
 
-  <!-- ── Preload critical above-the-fold image ── -->
-  <link rel="preload" href="./assets/images/portrait.jpg" as="image" fetchpriority="high" />
+  <!-- ── Preload critical font (no image preload needed) ──  -->
 
   <!-- ── Styles ── -->
   <link rel="stylesheet" href="./assets/css/output.css" />
@@ -56,7 +51,6 @@
     "@type": "Person",
     "name": "Gede Yodyananta",
     "url": "https://gedeyodyananta.vercel.app/",
-    "image": "https://gedeyodyananta.vercel.app/assets/images/portrait.jpg",
     "jobTitle": "Software Engineering Student",
     "description": "Software Engineering Student at Politeknik Negeri Bali. Focused on Frontend Development and Artificial Intelligence.",
     "sameAs": [
@@ -215,7 +209,7 @@
             <p class="anim-fade" style="font-size:var(--text-xs); font-weight:600; letter-spacing:0.12em;
                       text-transform:uppercase; color:var(--text-35);
                       margin-bottom:1.25rem;">
-              Gede Yodyananta · Frontend Developer
+              Gede Yodyananta · AI
             </p>
 
             <!-- Main headline -->
@@ -259,26 +253,44 @@
           </div><!-- end left column -->
 
           <!-- ════════════════════════════════
-               RIGHT — Portrait
+               RIGHT — Live Code Editor
           ════════════════════════════════ -->
           <div class="anim-scale anim-delay-2" style="position:relative; display:flex; justify-content:center;
                       align-items:center;">
 
-            <!-- Radial glow behind portrait -->
+            <!-- Radial glow behind editor -->
             <div class="hero-glow" aria-hidden="true"></div>
 
-            <!-- Glass portrait panel -->
-            <div class="hero-portrait-panel" style="width:100%; max-width:400px; aspect-ratio:3/4; position:relative;">
+            <!-- Code Editor Window -->
+            <div id="hero-editor" class="hero-editor-window" role="img" aria-label="Live code editor showing developer profile as TypeScript">
 
-              <!-- Portrait photo -->
-              <img class="hero-portrait-img" src="./assets/images/portrait.jpg"
-                alt="Gede Yodyananta — Software Engineering Student" width="400" height="533" loading="eager"
-                decoding="async" />
+              <!-- Title bar -->
+              <div class="hero-editor-titlebar" aria-hidden="true">
+                <!-- macOS traffic lights -->
+                <div class="hero-editor-dots">
+                  <span class="hero-editor-dot" style="background:#ff5f57;"></span>
+                  <span class="hero-editor-dot" style="background:#febc2e;"></span>
+                  <span class="hero-editor-dot" style="background:#28c840;"></span>
+                </div>
+                <!-- File name tab -->
+                <div class="hero-editor-tab">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" style="flex-shrink:0;opacity:0.55;" aria-hidden="true">
+                    <path d="M3 3h18v18H3V3z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                    <path d="M3 8h18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M9 8v13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                  </svg>
+                  <span>developer.ts</span>
+                </div>
+                <div style="flex:1;"></div>
+              </div>
 
-              <!-- Subtle inner vignette at bottom -->
-              <div class="hero-portrait-vignette" aria-hidden="true"></div>
+              <!-- Line numbers + code area -->
+              <div class="hero-editor-body" aria-hidden="true">
+                <div class="hero-editor-lines" id="editor-line-nums"></div>
+                <pre class="hero-editor-code" id="editor-code-output"><code id="editor-typed-code"></code><span class="hero-editor-cursor" id="editor-cursor"></span></pre>
+              </div>
 
-            </div><!-- end portrait panel -->
+            </div><!-- end editor window -->
 
           </div><!-- end right column -->
 

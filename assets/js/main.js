@@ -322,4 +322,149 @@
     }
   });
 
+  /* ──────────────────────────────────────────────────────────
+     10. HERO CODE EDITOR — Typing animation + line numbers
+     Runs once on page load. Natural typing speed ~3–5 seconds.
+     After finishing, blinking cursor remains visible.
+  ────────────────────────────────────────────────────────── */
+  (function initCodeEditor() {
+    const outputEl  = document.getElementById('editor-typed-code');
+    const cursorEl  = document.getElementById('editor-cursor');
+    const lineNumEl = document.getElementById('editor-line-nums');
+
+    if (!outputEl || !cursorEl || !lineNumEl) return;
+
+    /* ── Syntax-highlighted code tokens ──
+       Each entry: [text, cssColor]
+       null color = default text color (inherited).
+       We build the visible plain text from tokens to drive typing.
+    ── */
+    const KW   = '#569cd6'; /* blue     — keywords  */
+    const STR  = '#6a9955'; /* green    — strings   */
+    const PROP = '#9cdcfe'; /* lt-blue  — properties */
+    const PUNC = '#808080'; /* gray     — punctuation / brackets */
+    const DEF  = null;      /* white (dark) / near-black (light) */
+
+    /* Light-mode overrides injected once */
+    const lightStyle = document.createElement('style');
+    lightStyle.textContent = [
+      ':root:not(.dark) .ec-kw   { color:#0000ff; }',
+      ':root:not(.dark) .ec-str  { color:#267f00; }',
+      ':root:not(.dark) .ec-prop { color:#001080; }',
+      ':root:not(.dark) .ec-punc { color:#555555; }',
+    ].join('\n');
+    document.head.appendChild(lightStyle);
+
+    /* Token list — (plainText, colorClass) pairs */
+    const tokens = [
+      ['const',           'ec-kw'],
+      [' developer = {',  'ec-punc'],
+      ['\n  name',        'ec-prop'],
+      [': ',              'ec-punc'],
+      ['"Gede Yodyananta"', 'ec-str'],
+      [',',               'ec-punc'],
+      ['\n  role',        'ec-prop'],
+      [': ',              'ec-punc'],
+      ['"Software Engineering Student"', 'ec-str'],
+      [',',               'ec-punc'],
+      ['\n  learning',    'ec-prop'],
+      [': [',             'ec-punc'],
+      ['\n    "Frontend Development"', 'ec-str'],
+      [',',               'ec-punc'],
+      ['\n    "Artificial Intelligence"', 'ec-str'],
+      [',',               'ec-punc'],
+      ['\n    "Backend Fundamentals"', 'ec-str'],
+      ['\n  ]',           'ec-punc'],
+      [',',               'ec-punc'],
+      ['\n  currentProjects', 'ec-prop'],
+      [': [',             'ec-punc'],
+      ['\n    "Personal Portfolio"', 'ec-str'],
+      [',',               'ec-punc'],
+      ['\n    "E-Commerce Website"', 'ec-str'],
+      ['\n  ]',           'ec-punc'],
+      [',',               'ec-punc'],
+      ['\n  philosophy',  'ec-prop'],
+      [': ',              'ec-punc'],
+      ['"Keep learning. Keep building."', 'ec-str'],
+      ['\n}',             'ec-punc'],
+      ['\n\nexport',      'ec-kw'],
+      [' ',               null],
+      ['default',         'ec-kw'],
+      [' developer',      'ec-prop'],
+      [';',               'ec-punc'],
+    ];
+
+    /* Build full plain text */
+    const plainText = tokens.map(t => t[0]).join('');
+    const totalChars = plainText.length;
+
+    /* Target total duration ~4 seconds.
+       Use a small random jitter per character for naturalism. */
+    const BASE_DELAY_MS = 4000 / totalChars; /* avg ms per char */
+
+    /* Map character position → span info */
+    /* We'll type by building <span class="ec-xxx">...</span> nodes
+       character by character.  We pre-build the token boundaries. */
+
+    let tokenIndex = 0;
+    let charInToken = 0;
+    let charCount   = 0;
+
+    /* DOM spans, one per token (created lazily as we type) */
+    const spans = [];
+
+    function getOrCreateSpan(ti) {
+      if (!spans[ti]) {
+        const span = document.createElement('span');
+        if (tokens[ti][1]) span.className = tokens[ti][1];
+        outputEl.appendChild(span);
+        spans[ti] = span;
+      }
+      return spans[ti];
+    }
+
+    function updateLineNumbers() {
+      const typed = plainText.slice(0, charCount);
+      const lines  = (typed.match(/\n/g) || []).length + 1;
+      let html = '';
+      for (let i = 1; i <= lines; i++) html += i + '\n';
+      lineNumEl.textContent = html;
+    }
+
+    function typeNextChar() {
+      if (tokenIndex >= tokens.length) {
+        /* Done — show blinking cursor */
+        cursorEl.style.opacity = '1';
+        return;
+      }
+
+      const [tokenText, tokenClass] = tokens[tokenIndex];
+
+      /* Type one character into the current span */
+      const span = getOrCreateSpan(tokenIndex);
+      span.textContent += tokenText[charInToken];
+      charCount++;
+      charInToken++;
+
+      updateLineNumbers();
+
+      if (charInToken >= tokenText.length) {
+        tokenIndex++;
+        charInToken = 0;
+      }
+
+      /* Natural jitter: spaces/newlines slightly faster */
+      const ch    = tokenText[charInToken - 1] || '';
+      const isWs  = ch === ' ' || ch === '\n';
+      const jitter = (Math.random() - 0.5) * BASE_DELAY_MS * 0.6;
+      const delay  = Math.max(8, BASE_DELAY_MS * (isWs ? 0.4 : 1) + jitter);
+
+      setTimeout(typeNextChar, delay);
+    }
+
+    /* Start after hero entrance animations settle (~700ms) */
+    updateLineNumbers();
+    setTimeout(typeNextChar, 700);
+  })();
+
 })();
