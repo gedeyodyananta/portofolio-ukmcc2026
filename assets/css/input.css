@@ -644,27 +644,32 @@
 
   /* ── Code Editor Window ── */
   .hero-editor-window {
-    width           : 100%;
-    max-width       : 460px;
-    border-radius   : var(--radius-xl);
-    background-color: #1e1e1e;
-    border          : 1px solid rgba(255,255,255,0.10);
-    box-shadow      : 0 0 0 1px rgba(255,255,255,0.04),
-                      0 32px 64px rgba(0,0,0,0.75),
-                      0 0 40px rgba(99,179,237,0.05);
-    overflow        : hidden;
-    animation       : editor-float 4s ease-in-out infinite;
+    width                  : 100%;
+    max-width              : 460px;
+    border-radius          : 1.625rem; /* 26px */
+    background-color       : rgba(18, 18, 22, 0.28);
+    backdrop-filter        : blur(28px) saturate(1.8);
+    -webkit-backdrop-filter: blur(28px) saturate(1.8);
+    border                 : 1px solid rgba(255,255,255,0.10);
+    box-shadow             : 0 0 0 1px rgba(255,255,255,0.04) inset,
+                             0 1px 0   rgba(255,255,255,0.08) inset,
+                             0 24px 56px rgba(0,0,0,0.50),
+                             0  8px 24px rgba(0,0,0,0.28);
+    overflow               : hidden;
+    animation              : editor-float 4s ease-in-out infinite;
   }
   :root:not(.dark) .hero-editor-window {
-    border-color    : rgba(0,0,0,0.14);
-    box-shadow      : 0 0 0 1px rgba(0,0,0,0.06),
-                      0 24px 48px rgba(0,0,0,0.18),
-                      0 0 40px rgba(99,179,237,0.04);
+    background-color       : rgba(255,255,255,0.62);
+    border                 : 1px solid rgba(0,0,0,0.09);
+    box-shadow             : 0 0 0 1px rgba(255,255,255,0.70) inset,
+                             0 1px 0   rgba(255,255,255,0.90) inset,
+                             0 20px 48px rgba(0,0,0,0.11),
+                             0  6px 20px rgba(0,0,0,0.07);
   }
 
   @keyframes editor-float {
-    0%,  100% { transform: translateY(0px);   }
-    50%        { transform: translateY(-7px);  }
+    0%,  100% { transform: translateY(0px);  }
+    50%        { transform: translateY(-7px); }
   }
 
   /* Respect reduced motion */
@@ -678,29 +683,28 @@
     align-items     : center;
     gap             : 0.75rem;
     padding         : 0.625rem 0.875rem;
-    background-color: #2d2d2d;
+    background-color: rgba(255,255,255,0.04);
     border-bottom   : 1px solid rgba(255,255,255,0.07);
     flex-shrink     : 0;
   }
   :root:not(.dark) .hero-editor-titlebar {
-    background-color: #e8e8e8;
-    border-bottom   : 1px solid rgba(0,0,0,0.10);
+    background-color: rgba(0,0,0,0.03);
+    border-bottom   : 1px solid rgba(0,0,0,0.07);
   }
 
   /* Traffic light dots */
   .hero-editor-dots {
-    display: flex;
+    display    : flex;
     align-items: center;
-    gap: 0.375rem;
+    gap        : 0.375rem;
     flex-shrink: 0;
   }
   .hero-editor-dot {
-    display         : block;
-    width           : 11px;
-    height          : 11px;
-    border-radius   : var(--radius-full);
-    flex-shrink     : 0;
-    opacity         : 0.90;
+    display      : block;
+    width        : 11px;
+    height       : 11px;
+    border-radius: var(--radius-full);
+    flex-shrink  : 0;
   }
 
   /* File tab */
@@ -710,42 +714,42 @@
     gap             : 0.35rem;
     padding         : 0.2rem 0.6rem;
     border-radius   : 0.25rem;
-    background-color: #1e1e1e;
-    border          : 1px solid rgba(255,255,255,0.08);
+    background-color: rgba(255,255,255,0.07);
+    border          : 1px solid rgba(255,255,255,0.09);
     font-size       : 0.6875rem;
     font-weight     : 500;
-    color           : rgba(255,255,255,0.65);
+    color           : rgba(255,255,255,0.55);
     font-family     : "Menlo","Consolas","Monaco",monospace;
     letter-spacing  : 0;
     white-space     : nowrap;
   }
   :root:not(.dark) .hero-editor-tab {
-    background-color: #ffffff;
-    border-color    : rgba(0,0,0,0.12);
-    color           : #444;
+    background-color: rgba(0,0,0,0.05);
+    border-color    : rgba(0,0,0,0.09);
+    color           : rgba(0,0,0,0.50);
   }
 
   /* Editor body */
   .hero-editor-body {
-    display     : flex;
-    align-items : flex-start;
-    padding     : 1rem 0 1.25rem;
-    min-height  : 300px;
-    overflow    : hidden;
+    display   : flex;
+    align-items: flex-start;
+    padding   : 1rem 0 1.25rem;
+    min-height: 300px;
+    overflow  : hidden;
   }
 
   /* Line numbers gutter */
   .hero-editor-lines {
-    flex-shrink     : 0;
-    width           : 2.5rem;
-    padding         : 0 0.5rem 0 0.875rem;
-    text-align      : right;
-    font-family     : "Menlo","Consolas","Monaco",monospace;
-    font-size       : 0.7rem;
-    line-height     : 1.6rem;
-    color           : rgba(255,255,255,0.18);
-    user-select     : none;
-    pointer-events  : none;
+    flex-shrink   : 0;
+    width         : 2.5rem;
+    padding       : 0 0.5rem 0 0.875rem;
+    text-align    : right;
+    font-family   : "Menlo","Consolas","Monaco",monospace;
+    font-size     : 0.7rem;
+    line-height   : 1.6rem;
+    color         : rgba(255,255,255,0.18);
+    user-select   : none;
+    pointer-events: none;
   }
   :root:not(.dark) .hero-editor-lines {
     color: rgba(0,0,0,0.22);
@@ -753,19 +757,19 @@
 
   /* Code area */
   .hero-editor-code {
-    flex            : 1;
-    margin          : 0;
-    padding         : 0 1rem 0 0;
-    font-family     : "Menlo","Consolas","Monaco",monospace;
-    font-size       : clamp(0.6875rem, 1.2vw, 0.8125rem);
-    line-height     : 1.6rem;
-    color           : #d4d4d4;
-    white-space     : pre;
-    overflow        : hidden;
-    tab-size        : 2;
+    flex       : 1;
+    margin     : 0;
+    padding    : 0 1rem 0 0;
+    font-family: "Menlo","Consolas","Monaco",monospace;
+    font-size  : clamp(0.6875rem, 1.2vw, 0.8125rem);
+    line-height: 1.6rem;
+    color      : rgba(255,255,255,0.82);
+    white-space: pre;
+    overflow   : hidden;
+    tab-size   : 2;
   }
   :root:not(.dark) .hero-editor-code {
-    color: #1e1e1e;
+    color: rgba(0,0,0,0.80);
   }
 
   /* Blinking cursor */
@@ -773,14 +777,14 @@
     display         : inline-block;
     width           : 2px;
     height          : 1.1em;
-    background-color: rgba(255,255,255,0.70);
+    background-color: rgba(255,255,255,0.65);
     vertical-align  : text-bottom;
     margin-left     : 1px;
     animation       : cursor-blink 1.1s step-end infinite;
     opacity         : 0;
   }
   :root:not(.dark) .hero-editor-cursor {
-    background-color: rgba(0,0,0,0.70);
+    background-color: rgba(0,0,0,0.65);
   }
   @keyframes cursor-blink {
     0%, 100% { opacity: 1; }
@@ -789,6 +793,19 @@
   @media (prefers-reduced-motion: reduce) {
     .hero-editor-cursor { animation: none; opacity: 1; }
   }
+
+  /* ── Editor syntax token colors ──
+     Dark mode: VS Code Dark+ palette
+     Light mode: VS Code Light+ palette (also set via JS for dynamic injection)
+  ── */
+  .ec-kw   { color: #569cd6; }   /* keyword  — blue           */
+  .ec-str  { color: #6a9955; }   /* string   — green          */
+  .ec-prop { color: #9cdcfe; }   /* property — light blue     */
+  .ec-punc { color: #808080; }   /* punctuation — gray        */
+  :root:not(.dark) .ec-kw   { color: #0070c1; }
+  :root:not(.dark) .ec-str  { color: #067d17; }
+  :root:not(.dark) .ec-prop { color: #0f5a8e; }
+  :root:not(.dark) .ec-punc { color: #6e7681; }
 
   /* Availability badge */
   .hero-badge {

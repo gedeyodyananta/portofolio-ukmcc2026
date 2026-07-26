@@ -334,26 +334,8 @@
 
     if (!outputEl || !cursorEl || !lineNumEl) return;
 
-    /* ── Syntax-highlighted code tokens ──
-       Each entry: [text, cssColor]
-       null color = default text color (inherited).
-       We build the visible plain text from tokens to drive typing.
-    ── */
-    const KW   = '#569cd6'; /* blue     — keywords  */
-    const STR  = '#6a9955'; /* green    — strings   */
-    const PROP = '#9cdcfe'; /* lt-blue  — properties */
-    const PUNC = '#808080'; /* gray     — punctuation / brackets */
-    const DEF  = null;      /* white (dark) / near-black (light) */
-
-    /* Light-mode overrides injected once */
-    const lightStyle = document.createElement('style');
-    lightStyle.textContent = [
-      ':root:not(.dark) .ec-kw   { color:#0000ff; }',
-      ':root:not(.dark) .ec-str  { color:#267f00; }',
-      ':root:not(.dark) .ec-prop { color:#001080; }',
-      ':root:not(.dark) .ec-punc { color:#555555; }',
-    ].join('\n');
-    document.head.appendChild(lightStyle);
+    /* Token colors are defined in output.css (ec-kw / ec-str / ec-prop / ec-punc).
+       No runtime style injection needed. */
 
     /* Token list — (plainText, colorClass) pairs */
     const tokens = [
